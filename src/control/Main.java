@@ -56,8 +56,23 @@ public class Main {
 //        String rutaFichero="./files/PASOALREY9.txt";
 //        String rutaFichero="./files/PASOALREY10.txt";
 
-
+        //tablero original
         Tablero tablero=new Tablero(rutaFichero);
+//            System.out.println("Mostrando tablero t1");
+//            tablero.mostrar();
+//            tablero.mostrardistancias();
+//
+//
+//        //Prueba constructor copia tablero
+//        Tablero t2=new Tablero(tablero);
+//            System.out.println("Mostrando tablero t2");
+//            t2.mostrar();
+//            t2.mostrardistancias();
+//
+//        t2.intercambiarPieza(new Posicion(1,0));
+//            System.out.println("Mostrando tablero t2");
+//        t2.mostrar();
+//        t2.mostrardistancias();
 
 
         // 4. La mostramos
@@ -80,29 +95,24 @@ public class Main {
             int numero;
             int i;
 
-            String distanciaEuclideaRey;
-            int distanciaManhattanRey;
+
 
             String distanciaEuclideaHueco;
             int distanciaManhattanHueco;
 
-            for (i = 0; i < 1; i++) {
-//            for (i = 0; i < values.length-1; i++) {
+//            for (i = 0; i < 1; i++) {
+            for (i = 0; i < values.length-1; i++) {
                 //SACO LA DEL PADRE
 //Fuente: https://es.stackoverflow.com/questions/29408/como-limitar-la-cantidad-de-decimales-de-un-double
-                distanciaEuclideaRey=String.format("%.2f",tablero.getDistanciaEuclideaRey());
-                distanciaManhattanRey=tablero.getDistanciaManhattanRey();
-
-                distanciaEuclideaHueco =String.format("%.2f",tablero.getDistanciaEuclideaHueco());;
-                distanciaManhattanHueco=tablero.getDistanciaManhattanHueco();
-
-                System.out.println("Padre (Distancia del Rey)(E: "+distanciaEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+distanciaEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
-
+                System.out.print("Padre ");
+                tablero.mostrardistancias();
 
                 //CALCULO LOS HIJOS
                 System.out.println("Hijos:");
                 tablero.calcularHijos();
+                tablero.borrarHijos();
 
+                //Cuando termine de calcular los hijos se borra la lista o se entra en una nueva
 
 
                 //Hijo_1, Hijo_2, etc
@@ -139,9 +149,9 @@ public class Main {
 
             }
 
-            distanciaEuclideaRey=String.format("%.2f",tablero.getDistanciaEuclideaRey());
-            distanciaManhattanRey=tablero.getDistanciaManhattanRey();
-            System.out.println("Padre (Distancia del Rey)(Euclidea: "+distanciaEuclideaRey+" , Manhattan: "+distanciaManhattanRey+")");
+//            distanciaEuclideaRey=String.format("%.2f",tablero.getDistanciaEuclideaRey());
+//            distanciaManhattanRey=tablero.getDistanciaManhattanRey();
+//            System.out.println("Padre (Distancia del Rey)(Euclidea: "+distanciaEuclideaRey+" , Manhattan: "+distanciaManhattanRey+")");
             // La última pieza en mover es el rey al objetivo y el hueco desaparece
             System.out.println("MOVIMIENTO FINAL");
 
@@ -152,9 +162,9 @@ public class Main {
             tablero.ponerReyObjetivo();
             tablero.mostrar();
 
-            distanciaEuclideaRey=String.format("%.2f",tablero.getDistanciaEuclideaRey());
-            distanciaManhattanRey=tablero.getDistanciaManhattanRey();
-            System.out.println("Padre (Distancia del Rey)(Euclidea: "+distanciaEuclideaRey+" , Manhattan: "+distanciaManhattanRey+")");
+//            distanciaEuclideaRey=String.format("%.2f",tablero.getDistanciaEuclideaRey());
+//            distanciaManhattanRey=tablero.getDistanciaManhattanRey();
+//            System.out.println("Padre (Distancia del Rey)(Euclidea: "+distanciaEuclideaRey+" , Manhattan: "+distanciaManhattanRey+")");
 
 
             // recorrerlo

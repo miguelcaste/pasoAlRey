@@ -27,7 +27,8 @@ public class Tablero {
     private Posicion posInicialMatrizMovimientos;
     private Posicion posFinalMatrizMovimientos;
 
-
+    //Figura
+    private char ultimaFiguraMovida;
 
 
     private ArrayList<Tablero> hijos;
@@ -41,6 +42,8 @@ public class Tablero {
         posObjetivo=new Posicion();
         posInicialMatrizMovimientos=new Posicion();
         posFinalMatrizMovimientos=new Posicion();
+
+        hijos=new ArrayList<>();
         //Ejemplo de tablero
 //        matriz = new char[][]{
 //                {'T', 'T', 'T', 'A', 'T'},
@@ -48,6 +51,39 @@ public class Tablero {
 //                {'A', 'A', 'M', 'M', 'O'},
 //                {'M', 'M', 'M', 'M', 'M'},
 //                {'T', 'T', 'T', 'T', 'T'}};
+    }
+
+    public Tablero(Tablero tablero) {
+        //Se copiaran matrices?
+
+        this.matriz = new char[filas][columnas];
+
+        for (int i = 0; i < tablero.getFilas(); i++) {
+            for (int j = 0; j < tablero.getColumnas() ; j++) {
+                this.matriz[i][j]=tablero.getMatriz()[i][j];
+            }
+        }
+
+
+
+        this.filas = tablero.getFilas();
+        this.columnas = tablero.getColumnas();
+
+        //Se copiaran posiciones?
+        this.posRey=new Posicion(tablero.getPosRey().getX(),tablero.getPosRey().getY());
+        this.posHueco = new Posicion(tablero.getPosHueco().getX(),tablero.getPosHueco().getY());
+        this.posObjetivo = new Posicion(tablero.getPosObjetivo().getX(),tablero.getPosObjetivo().getY());
+
+        this.distanciaEuclideaRey = tablero.getDistanciaEuclideaRey();
+        this.distanciaManhattanRey = tablero.getDistanciaManhattanRey();
+        this.distanciaEuclideaHueco = tablero.getDistanciaEuclideaHueco();
+        this.distanciaManhattanHueco = tablero.getDistanciaManhattanHueco();
+        this.posInicialMatrizMovimientos = tablero.getPosInicialMatrizMovimientos();
+        this.posFinalMatrizMovimientos = tablero.getPosFinalMatrizMovimientos();
+
+        //Los hijos no se copian, se dejan vacios
+        this.hijos=new ArrayList<>();
+
     }
 
     // Constructor parametrizado
@@ -62,6 +98,7 @@ public class Tablero {
         posInicialMatrizMovimientos=new Posicion();
         posFinalMatrizMovimientos=new Posicion();
 
+        hijos=new ArrayList<>();
 
 
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
@@ -198,6 +235,7 @@ public class Tablero {
             Posicion p=new Posicion();
             String disEuclideaRey;
             String disEuclideaHueco;
+            int contador=0;
 
 //                // Necesitamos una segunda matriz para calcular el movimiento y ver cual de los caminos es mejor
 ////            char[][] matriz2= tablero.getMatriz();
@@ -232,11 +270,26 @@ public class Tablero {
                                    //Otra opción
                                    //Aplicar el movimiento
                                    //imprimirlo y volver hacia atrás
-                                   intercambiarPieza(p);
 
-                                   disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
-                                   disEuclideaHueco =String.format("%.2f",distanciaEuclideaHueco);;
-                                   System.out.println(figura+" - "+p+" (Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
+                                   // Recorrer padre
+                                   // Tranferir a hijo
+
+                                   System.out.print(figura+" - "+p);
+                                   hijos.add(contador,new Tablero(this));
+                                   hijos.get(contador).intercambiarPieza(p);
+                                   hijos.get(contador).mostrardistancias();
+
+                                   contador++;
+//                                   Tablero t=new Tablero(this);
+//                                   t.intercambiarPieza(p);
+//                                   t.mostrar();
+//                                   System.out.print(t.getUltimaFiguraMovida()+" - "+p);
+//                                    t.mostrardistancias();
+//                                   hijos.add(t);
+
+
+
+
                                    //VUELVO HACIA ATRAS
                                    //Falta el volver hacia atras
 
@@ -249,13 +302,21 @@ public class Tablero {
                                     //Calcular la nueva distanciaEuclidea
                                     //guardar en una lista
 
-                                    intercambiarPieza(p);
+                                    System.out.print(figura+" - "+p);
+                                    hijos.add(contador,new Tablero(this));
+                                    hijos.get(contador).intercambiarPieza(p);
 
-                                    disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
-                                    disEuclideaHueco =String.format("%.2f",distanciaEuclideaHueco);;
-                                    System.out.println(figura+" - "+p+" (Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
-                                    //VUELVO HACIA ATRAS
-                                    //Falta el volver hacia atras
+                                    hijos.get(contador).mostrardistancias();
+
+                                    contador++;
+
+//                                    Tablero t=new Tablero(this);
+//                                    t.intercambiarPieza(p);
+//                                    t.mostrar();
+//                                    System.out.print(t.getUltimaFiguraMovida()+" - "+p);
+//                                    t.mostrardistancias();
+//                                    hijos.add(t);
+
 
                                 }
                                 break;
@@ -264,16 +325,21 @@ public class Tablero {
                                 //Calcular la nueva distanciaEuclidea
                                 //guardar en una lista
 
-                                intercambiarPieza(p);
+                                System.out.print(figura+" - "+p);
+                                hijos.add(contador,new Tablero(this));
+                                hijos.get(contador).intercambiarPieza(p);
+
+                                hijos.get(contador).mostrardistancias();
+
+                                contador++;
 
 
-                                disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
-                                disEuclideaHueco =String.format("%.2f",distanciaEuclideaHueco);;
-                                System.out.println(figura+" - "+p+" (Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
-
-                                //VUELVO HACIA ATRAS
-                                //Falta el volver hacia atras
-
+//                                Tablero t=new Tablero(this);
+//                                t.intercambiarPieza(p);
+//                                t.mostrar();
+//                                System.out.print(t.getUltimaFiguraMovida()+" - "+p);
+//                                t.mostrardistancias();
+//                                hijos.add(t);
 
                                 break;
                         }
@@ -295,7 +361,9 @@ public class Tablero {
 
     }
 
-
+    public void borrarHijos(){
+        hijos.clear();
+    }
 
 
 
@@ -318,6 +386,9 @@ public class Tablero {
             posRey.setXY(posHueco.getX(),posHueco.getY());
         }
         matriz[posHueco.getX()][posHueco.getY()]=pieza; // en el hueco iria la pieza
+
+        //Guardo la última figura movida
+        ultimaFiguraMovida=pieza;
 
         posHueco.setXY(pos.getX(),pos.getY());
         matriz[posHueco.getX()][posHueco.getY()]='H'; // y en la pieza el hueco
@@ -403,6 +474,13 @@ public class Tablero {
     }
 
 
+    public void mostrardistancias() {
+        String disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
+        String disEuclideaHueco=String.format("%.2f",distanciaEuclideaHueco);
+
+        System.out.println("(Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
+    }
+
     //Getters and Setters
 
 
@@ -484,6 +562,38 @@ public class Tablero {
 
     public void setPosObjetivo(Posicion posObjetivo) {
         this.posObjetivo = posObjetivo;
+    }
+
+    public Posicion getPosInicialMatrizMovimientos() {
+        return posInicialMatrizMovimientos;
+    }
+
+    public void setPosInicialMatrizMovimientos(Posicion posInicialMatrizMovimientos) {
+        this.posInicialMatrizMovimientos = posInicialMatrizMovimientos;
+    }
+
+    public Posicion getPosFinalMatrizMovimientos() {
+        return posFinalMatrizMovimientos;
+    }
+
+    public void setPosFinalMatrizMovimientos(Posicion posFinalMatrizMovimientos) {
+        this.posFinalMatrizMovimientos = posFinalMatrizMovimientos;
+    }
+
+    public ArrayList<Tablero> getHijos() {
+        return hijos;
+    }
+
+    public void setHijos(ArrayList<Tablero> hijos) {
+        this.hijos = hijos;
+    }
+
+    public char getUltimaFiguraMovida() {
+        return ultimaFiguraMovida;
+    }
+
+    public void setUltimaFiguraMovida(char ultimaFiguraMovida) {
+        this.ultimaFiguraMovida = ultimaFiguraMovida;
     }
 
     //FUNCIONES APARTE
