@@ -203,7 +203,7 @@ public class Tablero {
             posInicialMatrizMovimientos.setY(posHueco.getY()-1);
         }
 
-        System.out.println("La posición de la matriz sería: "+posInicialMatrizMovimientos);
+        //System.out.println("La posición de la matriz sería: "+posInicialMatrizMovimientos);
 
         //LIMITES SUPERIORES
         posFinalMatrizMovimientos.setXY(4,4);
@@ -214,7 +214,7 @@ public class Tablero {
             posFinalMatrizMovimientos.setY(posHueco.getY()+1);
         }
 
-        System.out.println("La posición limite sería: ("+posFinalMatrizMovimientos);
+        //System.out.println("La posición limite sería: ("+posFinalMatrizMovimientos);
     }
 
 
