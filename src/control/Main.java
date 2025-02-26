@@ -86,8 +86,8 @@ public class Main {
             String distanciaEuclideaHueco;
             int distanciaManhattanHueco;
 
-
-            for (i = 0; i < values.length-1; i++) {
+            for (i = 0; i < 1; i++) {
+//            for (i = 0; i < values.length-1; i++) {
                 //SACO LA DEL PADRE
 //Fuente: https://es.stackoverflow.com/questions/29408/como-limitar-la-cantidad-de-decimales-de-un-double
                 distanciaEuclideaRey=String.format("%.2f",tablero.getDistanciaEuclideaRey());
@@ -101,7 +101,20 @@ public class Main {
 
                 //CALCULO LOS HIJOS
                 System.out.println("Hijos:");
+                tablero.calcularHijos();
+
+
+
                 //Hijo_1, Hijo_2, etc
+
+
+
+
+
+
+
+
+
 
 
 
@@ -122,6 +135,7 @@ public class Main {
 //                System.out.println("Pieza a intercambiar"+pos);
                 tablero.intercambiarPieza(pos);
                 tablero.mostrar();
+
 
             }
 
@@ -168,7 +182,8 @@ public class Main {
             //columnas y
 
 
-            //Inecesario buscar, ya lo obtengo cuando completo la matriz
+            //FUNCIONES DE BUSCAR
+            //Innecesario buscar, ya lo obtengo cuando completo la matriz
 
 
 //            int x_rey = 0;
@@ -218,125 +233,15 @@ public class Main {
 
 
 
-
-
-
-
-
-
-
-
-
 //            System.out.println("La distanciaEuclidea es de: "+ distanciaEuclidea(x_rey,y_rey, pos_x_objetivo, pos_y_objetivo));
 
 
-            //ALGORITMO
 
-            // Que piezas estan al lado del hueco que pueda mover
-            // Que piezas se pueden mover segun la figura y sus posibles movimientos
-
-            // muevo las piezas
-            // Si El rey esta mas cerca, continuo
-
-            // Hay un muro??
-
-            //Entiendo que solo se puede mover las piezas que estan al lado del hueco. CORRECTO
-
-
-            // POSICIONES ALREDEDOR DEL HUECO
-//            //Posiciones que existen alrededor del hueco
-//            // Me quedo con una matriz de 3x3
-//            int pos_x=0;
-//            int pos_y=0;
-//            if(pos_x_hueco >1){
-//                pos_x=pos_x_hueco-1;
-//            }
-//            if(pos_y_hueco >1){
-//                pos_y=pos_y_hueco-1;
-//            }
-//
-//            System.out.println("La posición de la matriz sería: ("+pos_x+", "+pos_y+")");
-//
-//            int limite_filas=filas;
-//            int limite_columnas=columnas;
-//            if(pos_x_hueco <3){
-//                limite_filas=pos_x_hueco+2;
-//            }
-//            if(pos_y_hueco <3){
-//                limite_columnas=pos_y_hueco+2;
-//            }
-//
-//            System.out.println("La posición limite sería: ("+limite_filas+", "+limite_columnas+")");
-
-//            char figura;
-            // Necesitamos una segunda matriz para calcular el movimiento y ver cual de los caminos es mejor
-//            char[][] matriz2= tablero.getMatriz();
-
-            //Comprobar que no se sale y que los movimientos que dan son correctos
-
-//            for (int i = pos_x; i<limite_filas; i++) {
-//                for (int j = pos_y; j < limite_columnas; j++) {
-//                    figura=matriz[i][j];
-//                    if(figura!='H'&&figura!='M'){
-//                        //Tendriamos los posibles movimientos
-//
-//                        //Piezas que se pueden mover
-//                        //REY
-//                        //Siempre se puede mover
-//
-//                        // en todos los casos hay que calcular la nueva distanciaEuclidea al objetivo
-//                        switch (figura){
-//                            case 'T':
-//                                // La torre se puede mover(cuando sea un movimiento en horizontal o en vertical
-//                               if (distanciaEuclidea(i,j,pos_x_hueco,pos_y_hueco)<=1){
-//                                   //Calcular la nueva distanciaEuclidea
-//                                   //guardar en una lista
-//
-//
-//                                   System.out.println(figura+" - "+"("+i+"," +j+"), y la nueva distanciaEuclidea al objetivo es de: ");
-//                               }
-//                                break;
-//                            case 'A':
-//                                // El alfil se puede mover(cuando sea un movimiento en diagonal)
-//                                if (distanciaEuclidea(i,j,pos_x_hueco,pos_y_hueco)>1){
-//                                    //Calcular la nueva distanciaEuclidea
-//                                    //guardar en una lista
-//
-//                                    System.out.println(figura+" - "+"("+i+"," +j+"), y la nueva distanciaEuclidea al objetivo es de: ");
-//                                }
-//                                break;
-//                            case 'R':
-//                                // El rey siempre se puede mover
-//                                //Calcular la nueva distanciaEuclidea
-//                                //guardar en una lista
-//
-//
-//
-//                                System.out.println(figura+" - "+"("+i+"," +j+"), y la nueva distanciaEuclidea al objetivo es de: ");
-//                                break;
-//                        }
-//
-//
-//
-//
-//
-//                        //Intercambia piezas
-//
-//                        //Calcula la distanciaEuclidea
-//
-//                    }
-//                }
-//            }
 
 
 
 //            moverRey();
-
-
-
 //            moverTorre();
-
-
 //            moverAlfil();
 
 

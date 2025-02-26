@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static java.lang.Math.abs;
 
@@ -22,12 +23,24 @@ public class Tablero {
     private double distanciaEuclideaHueco;
     private int distanciaManhattanHueco;
 
+    //Hijos y matriz de movimientos
+    private Posicion posInicialMatrizMovimientos;
+    private Posicion posFinalMatrizMovimientos;
+
+
+
+
+    private ArrayList<Tablero> hijos;
+
 
     // Constructor por defecto
     public Tablero(){
+        //Posiciones
         posRey=new Posicion();
         posHueco=new Posicion();
         posObjetivo=new Posicion();
+        posInicialMatrizMovimientos=new Posicion();
+        posFinalMatrizMovimientos=new Posicion();
         //Ejemplo de tablero
 //        matriz = new char[][]{
 //                {'T', 'T', 'T', 'A', 'T'},
@@ -42,9 +55,14 @@ public class Tablero {
     public Tablero(String fichero){
         matriz = new char[filas][columnas];
         char letra;
+        //Posiciones
         posRey=new Posicion();
         posHueco=new Posicion();
         posObjetivo=new Posicion();
+        posInicialMatrizMovimientos=new Posicion();
+        posFinalMatrizMovimientos=new Posicion();
+
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(fichero))) {
             String linea;
@@ -107,10 +125,14 @@ public class Tablero {
     public void calcularDistanciaEuclideaRey(){
         distanciaEuclideaRey= Math.sqrt (Math.pow ((posObjetivo.getX()- posRey.getX()),2) + Math.pow ((posObjetivo.getY()- posRey.getY()),2));
     }
-
+    //sin parametros del hueco al objetivo
     public void calcularDistanciaEuclideaHueco(){
         distanciaEuclideaHueco= Math.sqrt (Math.pow ((posObjetivo.getX()- posHueco.getX()),2) + Math.pow ((posObjetivo.getY()- posHueco.getY()),2));
     }
+
+//    public void calcularDistanciaEuclideaHueco(Posicion pos){
+//        distanciaEuclideaHueco= Math.sqrt (Math.pow ((pos.getX()- posHueco.getX()),2) + Math.pow ((pos.getY()- posHueco.getY()),2));
+//    }
 
 
 //Distancia Manhattan: dadas dos posiciones, calcula la distancia realizando movimientos
@@ -124,9 +146,154 @@ public class Tablero {
     public void calcularDistanciaManhattanHueco(){
         distanciaManhattanHueco= (abs(posObjetivo.getX()- posHueco.getX())+abs(posObjetivo.getY()- posHueco.getY()));
     }
+    //con parametros del hueco a la posición dada
+    public int calcularDistanciaManhattanHueco(Posicion pos){
+        return (abs(pos.getX()- posHueco.getX())+abs(pos.getY()- posHueco.getY()));
+    }
+
+    public void calcularPosicionesMatrizMovimientos(){
+        //     POSICIONES ALREDEDOR DEL HUECO
+        //Posiciones que existen alrededor del hueco
+        // Me quedo con una matriz de 3x3
+        //PROBAR ESTE ALGORITMO
+        //1º PARTE
+        //LIMITES INFERIORES
+        posInicialMatrizMovimientos.setXY(0,0);
+        if(posHueco.getX() >0){
+            posInicialMatrizMovimientos.setX(posHueco.getX()-1);
+        }
+        if(posHueco.getY() >0){
+            posInicialMatrizMovimientos.setY(posHueco.getY()-1);
+        }
+
+        System.out.println("La posición de la matriz sería: "+posInicialMatrizMovimientos);
+
+        //LIMITES SUPERIORES
+        posFinalMatrizMovimientos.setXY(4,4);
+        if(posHueco.getX() <4){
+            posFinalMatrizMovimientos.setX(posHueco.getX()+1);
+        }
+        if(posHueco.getY() <4){
+            posFinalMatrizMovimientos.setY(posHueco.getY()+1);
+        }
+
+        System.out.println("La posición limite sería: ("+posFinalMatrizMovimientos);
+    }
+
+
+    //ALGORITMO PRINCIPAL
+
+    // Qué piezas están al lado del hueco que pueda mover
+    // Que piezas se pueden mover según la figura y sus posibles movimientos
+
+    // muevo las piezas
+    // Si El rey esta mas cerca, continuo
+
+    // Hay un muro??
+
+    //Entiendo que solo se puede mover las piezas que están al lado del hueco. CORRECTO
+    public void calcularHijos(){
+        calcularPosicionesMatrizMovimientos();
+            char figura;
+            Posicion p=new Posicion();
+            String disEuclideaRey;
+            String disEuclideaHueco;
+
+//                // Necesitamos una segunda matriz para calcular el movimiento y ver cual de los caminos es mejor
+////            char[][] matriz2= tablero.getMatriz();
+//
+//                //Comprobar que no se sale y que los movimientos que dan son correctos
+//            //2º PARTE
+            for (int i = posInicialMatrizMovimientos.getX(); i<=posFinalMatrizMovimientos.getX(); i++) {
+                for (int j = posInicialMatrizMovimientos.getY(); j <=posFinalMatrizMovimientos.getY(); j++) {
+                    figura=matriz[i][j];
+                    p.setXY(i,j);
+                    //Distinto de Hueco y de Muro
+                    if(figura!='H'&&figura!='M'){
+                        //Tendriamos los posibles movimientos
+
+                        //Piezas que se pueden mover
+                        //REY
+                        //Siempre se puede mover
+
+                        // en todos los casos hay que calcular la nueva distanciaEuclidea al objetivo
+                        switch (figura){
+                            case 'T':
+                                // La torre se puede mover(cuando sea un movimiento en horizontal o en vertical
+                               if (calcularDistanciaManhattanHueco(p) == 1){
+                                   //Calcular la nueva distanciaEuclidea
+                                   //guardar en una lista
+
+                                   //1º OPCIÓN CORRECTA
+                                   //Generaría un tablero por cada figura correcta y lo guardaría en la lista
+                                   //Necesito tambien el movimiento
+
+                                   //2º OPCION SENCILLA
+                                   //Otra opción
+                                   //Aplicar el movimiento
+                                   //imprimirlo y volver hacia atrás
+                                   intercambiarPieza(p);
+
+                                   disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
+                                   disEuclideaHueco =String.format("%.2f",distanciaEuclideaHueco);;
+                                   System.out.println(figura+" - "+p+" (Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
+                                   //VUELVO HACIA ATRAS
+                                   //Falta el volver hacia atras
+
+
+                               }
+                                break;
+                            case 'A':
+                                // El alfil se puede mover(cuando sea un movimiento en diagonal)
+                                if (calcularDistanciaManhattanHueco(p) > 1){
+                                    //Calcular la nueva distanciaEuclidea
+                                    //guardar en una lista
+
+                                    intercambiarPieza(p);
+
+                                    disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
+                                    disEuclideaHueco =String.format("%.2f",distanciaEuclideaHueco);;
+                                    System.out.println(figura+" - "+p+" (Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
+                                    //VUELVO HACIA ATRAS
+                                    //Falta el volver hacia atras
+
+                                }
+                                break;
+                            case 'R':
+                                // El rey siempre se puede mover
+                                //Calcular la nueva distanciaEuclidea
+                                //guardar en una lista
+
+                                intercambiarPieza(p);
+
+
+                                disEuclideaRey=String.format("%.2f",distanciaEuclideaRey);
+                                disEuclideaHueco =String.format("%.2f",distanciaEuclideaHueco);;
+                                System.out.println(figura+" - "+p+" (Distancia del Rey)(E: "+disEuclideaRey+" , M: "+distanciaManhattanRey+")"+"(Distancia del Hueco)(E: "+disEuclideaHueco+" , M: "+distanciaManhattanHueco+")");
+
+                                //VUELVO HACIA ATRAS
+                                //Falta el volver hacia atras
+
+
+                                break;
+                        }
 
 
 
+
+
+                        //Intercambia piezas
+
+                        //Calcula la distanciaEuclidea
+
+                    }
+                }
+            }
+
+
+
+
+    }
 
 
 
@@ -144,7 +311,7 @@ public class Tablero {
     public void intercambiarPieza(Posicion pos){
         char pieza=matriz[pos.getX()][pos.getY()];
 
-        System.out.println("La pieza de la posicion "+pos+" es "+pieza);
+//        System.out.println("La pieza de la posicion "+pos+" es "+pieza);
 
         //Si la pieza es rey actualizo sus posiciones
         if (pieza=='R'){
@@ -295,6 +462,31 @@ public class Tablero {
         this.distanciaEuclideaHueco = distanciaEuclideaHueco;
     }
 
+    public Posicion getPosRey() {
+        return posRey;
+    }
+
+    public void setPosRey(Posicion posRey) {
+        this.posRey = posRey;
+    }
+
+    public Posicion getPosHueco() {
+        return posHueco;
+    }
+
+    public void setPosHueco(Posicion posHueco) {
+        this.posHueco = posHueco;
+    }
+
+    public Posicion getPosObjetivo() {
+        return posObjetivo;
+    }
+
+    public void setPosObjetivo(Posicion posObjetivo) {
+        this.posObjetivo = posObjetivo;
+    }
+
+    //FUNCIONES APARTE
     // Exporta la matriz en un fichero
     public void exportar(String rutaFichero){
         try {
