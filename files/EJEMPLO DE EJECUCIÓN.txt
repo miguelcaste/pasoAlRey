@@ -1,0 +1,152 @@
+--------------TABLERO INICIAL----------------
+T, T, T, A, T
+R, H, T, A, T
+A, A, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=0,y=1)
+El hueco esta en la posición: (x=1,y=1)
+El objetivo esta en la posición: (x=4,y=2)
+Padre (Distancia del Rey)(E: 4,12 , M: 5)(Distancia del Hueco)(E: 3,16 , M: 4)
+Hijos:
+R - (x=0,y=1)(Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 4,12 , M: 5)
+A - (x=0,y=2)(Distancia del Rey)(E: 4,12 , M: 5)(Distancia del Hueco)(E: 4,00 , M: 4)
+T - (x=1,y=0)(Distancia del Rey)(E: 4,12 , M: 5)(Distancia del Hueco)(E: 3,61 , M: 5)
+T - (x=2,y=1)(Distancia del Rey)(E: 4,12 , M: 5)(Distancia del Hueco)(E: 2,24 , M: 3)
+--------------MOVIMIENTO 1--------------
+T, T, T, A, T
+H, R, T, A, T
+A, A, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=1,y=1)
+El hueco esta en la posición: (x=0,y=1)
+Padre (Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 4,12 , M: 5)
+Hijos:
+T - (x=0,y=0)(Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 4,47 , M: 6)
+R - (x=1,y=1)(Distancia del Rey)(E: 4,12 , M: 5)(Distancia del Hueco)(E: 3,16 , M: 4)
+A - (x=1,y=2)(Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 3,00 , M: 3)
+--------------MOVIMIENTO 2--------------
+T, T, T, A, T
+A, R, T, A, T
+A, H, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=1,y=1)
+El hueco esta en la posición: (x=1,y=2)
+Padre (Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 3,00 , M: 3)
+Hijos:
+A - (x=0,y=1)(Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 4,12 , M: 5)
+R - (x=1,y=1)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 3,16 , M: 4)
+--------------MOVIMIENTO 3--------------
+T, T, T, A, T
+A, H, T, A, T
+A, R, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=1,y=2)
+El hueco esta en la posición: (x=1,y=1)
+Padre (Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 3,16 , M: 4)
+Hijos:
+A - (x=0,y=2)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 4,00 , M: 4)
+T - (x=1,y=0)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 3,61 , M: 5)
+R - (x=1,y=2)(Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 3,00 , M: 3)
+T - (x=2,y=1)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 2,24 , M: 3)
+--------------MOVIMIENTO 4--------------
+T, T, T, A, T
+A, T, H, A, T
+A, R, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=1,y=2)
+El hueco esta en la posición: (x=2,y=1)
+Padre (Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 2,24 , M: 3)
+Hijos:
+T - (x=1,y=1)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 3,16 , M: 4)
+R - (x=1,y=2)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,00 , M: 3)
+T - (x=2,y=0)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 2,83 , M: 4)
+A - (x=3,y=0)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 2,24 , M: 3)
+--------------MOVIMIENTO 5--------------
+T, T, T, A, T
+A, T, R, A, T
+A, H, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=2,y=1)
+El hueco esta en la posición: (x=1,y=2)
+Padre (Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,00 , M: 3)
+Hijos:
+A - (x=0,y=1)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 4,12 , M: 5)
+T - (x=1,y=1)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,16 , M: 4)
+R - (x=2,y=1)(Distancia del Rey)(E: 3,00 , M: 3)(Distancia del Hueco)(E: 2,24 , M: 3)
+--------------MOVIMIENTO 6--------------
+T, T, T, A, T
+A, H, R, A, T
+A, T, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=2,y=1)
+El hueco esta en la posición: (x=1,y=1)
+Padre (Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,16 , M: 4)
+Hijos:
+A - (x=0,y=2)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 4,00 , M: 4)
+T - (x=1,y=0)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,61 , M: 5)
+T - (x=1,y=2)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,00 , M: 3)
+R - (x=2,y=1)(Distancia del Rey)(E: 3,16 , M: 4)(Distancia del Hueco)(E: 2,24 , M: 3)
+--------------MOVIMIENTO 7--------------
+T, H, T, A, T
+A, T, R, A, T
+A, T, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=2,y=1)
+El hueco esta en la posición: (x=1,y=0)
+Padre (Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,61 , M: 5)
+Hijos:
+T - (x=0,y=0)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 4,47 , M: 6)
+A - (x=0,y=1)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 4,12 , M: 5)
+T - (x=1,y=1)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,16 , M: 4)
+T - (x=2,y=0)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 2,83 , M: 4)
+R - (x=2,y=1)(Distancia del Rey)(E: 3,61 , M: 5)(Distancia del Hueco)(E: 2,24 , M: 3)
+--------------MOVIMIENTO 8--------------
+T, T, H, A, T
+A, T, R, A, T
+A, T, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=2,y=1)
+El hueco esta en la posición: (x=2,y=0)
+Padre (Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 2,83 , M: 4)
+Hijos:
+T - (x=1,y=0)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 3,61 , M: 5)
+R - (x=2,y=1)(Distancia del Rey)(E: 2,83 , M: 4)(Distancia del Hueco)(E: 2,24 , M: 3)
+A - (x=3,y=1)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 1,41 , M: 2)
+--------------MOVIMIENTO 9--------------
+T, T, A, A, T
+A, T, R, H, T
+A, T, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=2,y=1)
+El hueco esta en la posición: (x=3,y=1)
+Padre (Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 1,41 , M: 2)
+Hijos:
+A - (x=2,y=0)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 2,83 , M: 4)
+R - (x=2,y=1)(Distancia del Rey)(E: 1,41 , M: 2)(Distancia del Hueco)(E: 2,24 , M: 3)
+T - (x=4,y=1)(Distancia del Rey)(E: 2,24 , M: 3)(Distancia del Hueco)(E: 1,00 , M: 1)
+--------------MOVIMIENTO 10--------------
+T, T, A, A, T
+A, T, H, R, T
+A, T, M, M, O
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=3,y=1)
+El hueco esta en la posición: (x=2,y=1)
+MOVIMIENTO FINAL
+T, T, A, A, T
+A, T, H, X, T
+A, T, M, M, R
+M, M, M, M, M
+T, T, T, T, T
+El rey esta en la posición: (x=4,y=2)
+El hueco esta en la posición: (x=2,y=1)

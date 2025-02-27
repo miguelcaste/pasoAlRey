@@ -3,6 +3,8 @@ package control;
 import model.Posicion;
 import model.Tablero;
 
+import java.util.Arrays;
+
 import static java.lang.Math.abs;
 
 
@@ -13,7 +15,7 @@ public class Main {
 
     //En un futuro usar enumerados
     //Fuente: https://jarroba.com/enum-enumerados-en-java-con-ejemplos/
-
+    //Para las soluciones
     public static int letraANumero(char letra){
             switch (letra){
                 case 'a':
@@ -29,6 +31,53 @@ public class Main {
             }
             return 0;
     }
+
+    public static char numeroALetra(int numero){
+        switch (numero){
+            case 0:
+                return 'a';
+            case 1:
+                return 'b';
+            case 2:
+                return 'c';
+            case 3:
+                return 'd';
+            case 4:
+                return 'e';
+        }
+        return 'X';
+    }
+
+    //Transforma una solucion dada en letras y numeros a posiciones
+    public static Posicion[] transformarSolucionAPosiciones(String solucion){
+
+        String[] values = solucion.split(", ");
+
+        char letra;
+        int numero;
+        int i;
+
+        Posicion[] posiciones=new Posicion[values.length];
+
+        System.out.println(posiciones);
+        System.out.println(posiciones.length);
+
+
+        for (i = 0; i < posiciones.length; i++) {
+
+            letra = values[i].charAt(0);// Obtengo la letra
+            numero = Character.getNumericValue(values[i].charAt(1));
+
+            posiciones[i]=new Posicion(numero-1,letraANumero(letra));
+
+        }
+
+
+
+        return posiciones;
+
+    }
+
 
 
 
@@ -86,13 +135,22 @@ public class Main {
         // Primera aproximación: Implementar el recorrido de una solución
             String solucion="b1, c2, b2, b3, c2, b2, a2, a3, b4, b3, b4";
 
+//            System.out.println("Mostrando solución:");
+//            System.out.println(solucion);
+
+            Posicion[] posicionesSolucion=transformarSolucionAPosiciones(solucion);//Indicar longitud
+
+//            System.out.println("Mostrando posiciones:");
+//            System.out.println(Arrays.toString(solucionTransformada));
+
+
 // Transformando esta solución
             // esta formada por la pieza que va al hueco, necesitamos saber donde esta el hueco en todo momento
             // actualizando su posición
-            String[] values = solucion.split(", ");
 
-            char letra;
-            int numero;
+
+
+
             int i;
 
 
@@ -101,7 +159,7 @@ public class Main {
             int distanciaManhattanHueco;
 
 //            for (i = 0; i < 1; i++) {
-            for (i = 0; i < values.length-1; i++) {
+            for (i = 0; i < posicionesSolucion.length-1; i++) {
                 //SACO LA DEL PADRE
 //Fuente: https://es.stackoverflow.com/questions/29408/como-limitar-la-cantidad-de-decimales-de-un-double
                 System.out.print("Padre ");
@@ -123,15 +181,9 @@ public class Main {
 
 
 
-
-
-
-
-
-
                 //SACO EL MOVIMIENTO
-                letra = values[i].charAt(0);// Obtengo la letra
-                numero = Character.getNumericValue(values[i].charAt(1));
+                //letra = values[i].charAt(0);// Obtengo la letra
+                //numero = Character.getNumericValue(values[i].charAt(1));
                 //System.out.println(letra+"-"+numero+" se transforma en "+(numero-1)+"-"+letraANumero(letra));
                 //Realizamos los movimientos y actualizamos el tablero
                 System.out.println("--------------MOVIMIENTO "+(i+1)+"--------------");
@@ -139,11 +191,11 @@ public class Main {
                 //[T, T, T, A, T]
                 //[R, H, T, A, T]
                 // 0,1
-                Posicion pos = new Posicion(numero-1,letraANumero(letra));
+                //Posicion pos = new Posicion(numero-1,letraANumero(letra));
 
 
 //                System.out.println("Pieza a intercambiar"+pos);
-                tablero.intercambiarPieza(pos);
+                tablero.intercambiarPieza(posicionesSolucion[i]);
                 tablero.mostrar();
 
 
